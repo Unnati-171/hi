@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Happy Birthday!</title>
+  <style>
+    :root {
+      --bg: linear-gradient(135deg, #ff9a9e, #fad0c4, #fad0c4);
+      --card: rgba(255, 255, 255, 0.88);
+      --text: #4b2e83;
+      --accent: #ff6f91;
+      --shadow: 0 20px 40px rgba(0, 0, 0, 0.12);
+    }
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    body {
+      min-height: 100vh;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(180deg, rgba(255, 192, 203, 0.14), rgba(173, 216, 230, 0.14)),
+        url('pics/back ground.jpeg');
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      background-attachment: fixed;
+      color: rgba(45, 31, 77, 0.88);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+    }
+    .container {
+      max-width: 960px;
+      width: 100%;
+      background: none;
+      border-radius: 32px;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.14);
+      overflow: hidden;
+      position: relative;
+      backdrop-filter: none;
+    }
+    .background-shapes {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      z-index: 0;
+      overflow: hidden;
+    }
+    .background-shape {
+      position: absolute;
+      width: 320px;
+      height: 260px;
+      border-radius: 50%;
+      filter: blur(40px);
+      opacity: 0.9;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+    }
+    .background-shape span {
+      position: relative;
+      color: rgba(255, 255, 255, 0.95);
+      font-size: 1rem;
+      font-weight: 600;
+      text-shadow: 0 0 18px rgba(0, 0, 0, 0.18);
+    }
+    .shape-pink {
+      top: 10%;
+      left: 8%;
+      background: rgba(255, 192, 203, 0.38);
+    }
+    .shape-blue {
+      bottom: 12%;
+      right: 10%;
+      background: rgba(173, 216, 230, 0.32);
+    }
+    .message,
+    .hero,
+    .footer {
+      opacity: 0.96;
+      position: relative;
+      z-index: 1;
+    }
+    .hero {
+      padding: 40px 36px;
+      text-align: center;
+      position: relative;
+    }
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at top left, rgba(255,255,255,0.9), transparent 45%), radial-gradient(circle at bottom right, rgba(255,183,197,0.45), transparent 30%);
+      pointer-events: none;
+    }
+    .hero * {
+      position: relative;
+      z-index: 1;
+    }
+    h1 {
+      font-size: clamp(2.8rem, 5vw, 4.5rem);
+      margin-bottom: 12px;
+      letter-spacing: -0.04em;
+    }
+    p.subtitle {
+      font-size: 1.15rem;
+      margin-bottom: 24px;
+      color: #67457a;
+    }
+    .card {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 24px;
+      padding: 0 36px 40px;
+    }
+    .message {
+      background: #fff;
+      border-radius: 24px;
+      padding: 28px;
+      box-shadow: inset 0 0 0 1px rgba(115, 60, 145, 0.08);
+    }
+    .message h2 {
+      margin-bottom: 14px;
+      font-size: 1.75rem;
+      color: var(--accent);
+    }
+    .message h3 {
+      margin-top: 24px;
+      margin-bottom: 12px;
+      font-size: 1.2rem;
+      color: #7b4a8b;
+    }
+    .message p {
+      line-height: 1.75;
+      color: #4a3365;
+      margin-bottom: 18px;
+    }
+    .quote {
+      margin: 22px 0;
+      padding: 18px 22px;
+      border-left: 5px solid #ff6f91;
+      background: #fff1f8;
+      border-radius: 18px;
+      color: #62386e;
+      font-style: italic;
+      line-height: 1.8;
+    }
+    .cta {
+      display: flex;
+      justify-content: center;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+    .cta button {
+      border: none;
+      background: #6d3d91;
+      color: white;
+      padding: 16px 28px;
+      border-radius: 999px;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: transform 0.2s ease, background 0.2s ease;
+    }
+    .cta button:hover {
+      transform: translateY(-2px);
+      background: #8b4fb8;
+    }
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 18px;
+    }
+    .photo {
+      background: linear-gradient(180deg, #fde9ff 0%, #fff7f1 100%);
+      border-radius: 24px;
+      padding: 18px;
+      text-align: center;
+      box-shadow: 0 14px 32px rgba(121, 52, 89, 0.08);
+    }
+    .photo span {
+      display: inline-block;
+      margin-top: 16px;
+      color: #7f4a88;
+      font-weight: 600;
+    }
+    .photo img {
+      width: 100%;
+      height: auto;
+      max-height: 280px;
+      object-fit: contain;
+      border-radius: 18px;
+    }
+    .footer {
+      text-align: center;
+      color: #725a8c;
+      font-size: 0.95rem;
+      padding: 24px 36px 24px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="background-shapes">
+      <div class="background-shape shape-pink"><span>forever yours</span></div>
+      <div class="background-shape shape-blue"><span>always here</span></div>
+    </div>
+    <section class="hero">
+      <h1>Happy Birthday, Parkiee !</h1>
+      <p class="subtitle">For the boy who showed up through everything — this letter is for you.</p>
+    </section>
+
+    <div class="card">
+      <article class="message">
+        <h2>lot of love</h2>
+        <p>To the boy who showed up every single time for me — in times when I was completely low, in pains, bad moods, bad times, alone times, long distance, and any other situation — you stayed and showed up for me. This is for you.</p>
+        <p><strong>from the very beginning</strong><br>You became my favourite before I even realised it.</p>
+        <p>Thank you sooooo soooo much nanna — as I always say, I just don't say it, I really mean it all. My priority list begins just after your name, and I love you sooo sooo much. Muahhh 🤍</p>
+        <p>I don't think either of us planned this. I don't think either of us sat down one day and decided — okay, this person is going to become the most important one. It just happened. Quietly. Slowly. And then all at once.</p>
+        <p>In the little things — a text, a call, a t-shirt, a surprise I wouldn't be expecting — you just kept showing up. And somewhere between all of that, you became my person. My absolute favourite person.</p>
+        <div class="quote">You know, sometimes at any point of life we need someone we can return to — after any shit or great thing happened, or just to share gossip. Since the last 2–3 years you have been that person for me. You know every single thing about me and I feel safe sharing it all with you.</div>
+        <p>And I always wish that all my new year's first wishes are to you, and your first wish to me — not only for new year, but for birthdays, achievements, and small happinesses. Let us always be the first ones to congratulate each other. This friendship lasts forever till I die. You will be someone I remember even with my last breath.</p>
+
+        <h3>the things you do</h3>
+        <p>Nobody loves me the way you do.</p>
+        <p>You show up in every possible way and always keep our friendship prioritised. You tuck little surprises into ordinary moments without making a fuss. You feed someone Mandi on a random afternoon — taking care of someone like that is the most natural thing in the world and anyone could just melt for it.</p>
+        <p>You cross entire cities just to see my face light up. You get soaked in the rain and that becomes the best ride of the year — a dream moment, a fantasy come true.</p>
+        <div class="quote">That is the kind of love that doesn't announce itself. It just shows up. Again and again and again. And that is exactly what you do, Bangaram — you just keep showing up. I don't think anyone except me is this blessed, because they don't share a bond like ours. They don't have a friendship like ours. Damn — they don't know that heaven is where you are around.</div>
+
+        <h3>what you are to me</h3>
+        <p>You are the one I always run to first.</p>
+        <p>Good news? You're the first call. Hard days? You're the voice I need. Scary moments? You're the one who says "you'll make it" with so much certainty that I have no choice but to believe it too.</p>
+        <p>You listened to my whole story — every complicated, messy, real part of it — and you didn't flinch. You just understood. Fully. Quietly. And something in me exhaled for the first time in a very long time.</p>
+        <p>You gave me a thumbs up bottle I can't throw away. A t-shirt that was your favourite one. Memories I replay when I need to feel warm. And a version of myself that feels worthy of being loved — because you loved me so openly and so freely that I had no choice but to start believing I deserved it.</p>
+        <div class="quote">You are my favourite memory. My favourite surprise. My favourite rain ride. My favourite person to twin with in blue without planning it. My favourite everything.</div>
+
+        <h3>honest and real</h3>
+        <p>Even through the hard parts, I never stopped.</p>
+        <p>There were quiet stretches. Silences that ached. Moments where the distance felt heavier than usual and words got lost somewhere between us. And yes — some of those moments hurt. Really hurt.</p>
+        <p>But here is what I know with absolute certainty: you never meant to. You loved with everything you had, in every way you knew how. And the people who love like that — messily, wholly, imperfectly but genuinely — those are the ones worth holding onto.</p>
+        <div class="quote">Through every quiet spell, every misunderstanding, every mile between us — I never once stopped loving you. Not for a single second. Because you matter too much for that. You will always matter too much for that.</div>
+
+        <h3>on your birthday</h3>
+        <p>Everything I wish for you today.</p>
+        <p>I wish you a year that surprises you in the most beautiful, unexpected ways. A year where the good things come quietly and stay long. Where mornings feel lighter and evenings feel full. A year with 3 things properly managed — time, people around you, finances.</p>
+        <p>I know your trust and belief in God will take you to the heights you want to achieve — and even if it doesn't, something much much better than that will happen. Just like what happened in my life because of you.</p>
+        <p>I wish you people who see you the way I see you — completely, honestly, in all your wonderful imperfect beauty. People who show up for you the way you have always shown up for everyone else.</p>
+        <p>And every word typed here in this letter and every single part of this was made with my own hands — just for you. I hope you liked it 🤍</p>
+        <div class="quote">Most of all — I wish you the joy of knowing how deeply, how completely, how endlessly you are loved. Because you are, Bangaram. More than words can ever say.</div>
+
+        <h3>with every piece of my heart</h3>
+        <p>You are the boy who showed up through pain, through rain, through distance, through everything — and made every single moment feel worth remembering. The way you are making your parents, me, friends and your well-wishers proud is just amazing. You have a lot of way ahead and so many more things to make come true.</p>
+        <p>One last thing — please remember, I am always here. Just a word, just a command away to do anything for you. Trust me, I can burn worlds for you. I will always be there for you, stand for you, support you. Please never hesitate even a bit to share anything with me. This girl is always here waiting for you 🤍</p>
+        <p>I love you a lot. I am so proud of you. I am rooting for you — always, always, always. 🤍</p>
+        <p><strong>With lots and lots of love,<br>Your Anamcara, forever 🌸</strong></p>
+      </article>
+
+      <div class="cta">
+        <button onclick="showSurprise()">Open Your Surprise</button>
+        <button onclick="openMemoriesPage()">See Our Memories</button>
+      </div>
+    </div>
+
+    <footer class="footer">
+      Made with love for your special day.
+    </footer>
+  </div>
+
+  <script>
+    function showSurprise() {
+      alert('Happyyy Happierr andd Happiesttt Birthdayy Nannaa wishing you lots of love, success, and happiness. Did you receive any gift in a brown paper bag?');
+    }
+    function openMemoriesPage() {
+      window.location.href = 'memories.html';
+    }
+  </script>
+</body>
+</html>
